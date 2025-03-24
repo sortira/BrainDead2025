@@ -1,3 +1,26 @@
-- Note to whoever executes these programs in the future, ensure that the paths used for datasets are synced with whatever paths you use due to discrepancies among cloud data science tech providers. 
-- The .sav file is the MLPClassifier model saved using pickle file, don't view it directly.
-- the ppt and pdf for the eda phase should preferably be opened on a laptop/desktop and not a phone.
+
+# Prepare data for the sunburst chart
+home_advantage_df['region'] = 'India'  # Top-level category
+home_advantage_df['team_category'] = home_advantage_df['Home Field Advantage'].apply(
+    lambda x: 'High Advantage (>50%)' if x > 50 else 'Low Advantage (≤50%)'
+)
+
+# Create the sunburst chart
+fig = px.sunburst(
+    home_advantage_df,
+    path=['region', 'team_category', 'Team'],  # Hierarchy
+    values='Home Field Advantage',  # Size of segments
+    color='Home Field Advantage',  # Color scale
+    color_continuous_scale='Viridis',
+    title='IPL Teams: Home Field Advantage (Win Rate %)'
+)
+
+# Update layout for better readability
+fig.update_layout(
+    template='plotly_dark',
+    title_font_size=20,
+    margin=dict(t=50, l=25, r=25, b=25)
+)
+
+# Show the figure
+fig.show()
