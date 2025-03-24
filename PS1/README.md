@@ -1,0 +1,3 @@
+- Note to whoever executes these programs in the future, ensure that the paths used for datasets are synced with whatever paths you use due to discrepancies among cloud data science tech providers. 
+- The .sav file is the MLPClassifier model saved using pickle file, don't view it directly.
+- the ppt and pdf for the eda phase should preferably be opened on a laptop/desktop and not a phone.
